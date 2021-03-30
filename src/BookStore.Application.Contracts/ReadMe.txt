@@ -34,3 +34,6 @@ AutoMapper库可以在定义了正确的映射时自动执行此转换.
 #https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-5.0
 
 
+#https://docs.abp.io/en/abp/latest/Data-Transfer-Objects
+
+

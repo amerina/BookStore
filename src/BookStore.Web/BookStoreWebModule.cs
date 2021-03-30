@@ -125,6 +125,13 @@ namespace BookStore.Web
                 options.Conventions.AuthorizePage("/Books/CreateModal", BookStorePermissions.Books.Create);
                 options.Conventions.AuthorizePage("/Books/EditModal", BookStorePermissions.Books.Edit);
             });
+
+            Configure<RazorPagesOptions>(options =>
+            {
+                options.Conventions.AuthorizePage("/Authors/Index", BookStorePermissions.Authors.Default);
+                options.Conventions.AuthorizePage("/Authors/CreateModal", BookStorePermissions.Authors.Create);
+                options.Conventions.AuthorizePage("/Authors/EditModal", BookStorePermissions.Authors.Edit);
+            });
         }
 
         private void ConfigureAutoMapper()

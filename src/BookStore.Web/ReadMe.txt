@@ -46,3 +46,10 @@ bookStore.books.book.create({
 #3.实现应用层
 #4.实现用户接口层
 ***************************************************************
+
+#dynamic forms 
+#https://docs.abp.io/en/abp/latest/UI/AspNetCore/Tag-Helpers/Dynamic-Forms
+
+abp-input tag helper 
+You can definitely use the standard Bootstrap HTML structure, but it requires to write a lot of code. 
+abp-input automatically adds validation, localization and other standard elements based on the data type.
