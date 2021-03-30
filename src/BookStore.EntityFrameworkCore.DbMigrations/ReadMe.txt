@@ -11,6 +11,7 @@
 #https://docs.abp.io/zh-Hans/abp/latest/Data-Seeding
 #在 *.Domain 项目下创建派生 IDataSeedContributor 的类
 
+#Update-Database
 
 #更新数据库
 #运行 BookStore.DbMigrator 应用程序来更新数据库:
