@@ -22,6 +22,9 @@ namespace BookStore.Users
          * So, this properties are designed as read only!
          */
 
+        /// <summary>
+        /// 所有属性都有private/protected的set.这是为了防止实体在实体外部任意改变
+        /// </summary>
         public virtual Guid? TenantId { get; private set; }
 
         public virtual string UserName { get; private set; }
@@ -57,7 +60,7 @@ namespace BookStore.Users
 
         private AppUser()
         {
-            
+            /* This constructor is used by the ORM/database provider */
         }
     }
 }
