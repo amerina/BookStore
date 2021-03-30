@@ -1,0 +1,27 @@
+﻿@page
+@using BookStore.Localization
+@using BookStore.Web.Pages.Books
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model CreateModalModel
+@inject IStringLocalizer<BookStoreResource> L
+@{
+    Layout = null;
+}
+<abp-dynamic-form abp-model="Book" asp-page="/Books/CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["NewBook"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-form-content />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</abp-dynamic-form>
+
+@*
+    这个 modal 使用 abp-dynamic-form tag Helper 根据 CreateBookViewModel 类自动构建了表单.
+    abp-model 指定了 Book 属性为模型对象.
+    data-ajaxForm 设置了表单通过AJAX提交,而不是经典的页面回发.
+    abp-form-content tag helper 作为表单控件渲染位置的占位符 (这是可选的,只有你在 abp-dynamic-form 中像本示例这样添加了其他内容才需要).
+
+*@
