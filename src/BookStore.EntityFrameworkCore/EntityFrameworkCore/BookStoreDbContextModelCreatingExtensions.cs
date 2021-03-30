@@ -1,4 +1,5 @@
-﻿using BookStore.Books;
+﻿using BookStore.Authors;
+using BookStore.Books;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -33,6 +34,17 @@ namespace BookStore.EntityFrameworkCore
 
             添加映射以后就可以使用数据迁移在数据库中创建相关表结构
              */
+
+            builder.Entity<Author>(b =>
+            {
+                b.ToTable(BookStoreConsts.DbTablePrefix + "Authors", BookStoreConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.Name)
+                 .IsRequired()
+                 .HasMaxLength(AuthorConsts.MaxNameLength);
+
+                b.HasIndex(x => x.Name);
+            });
         }
     }
 }
