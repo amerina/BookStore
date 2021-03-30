@@ -36,6 +36,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using BookStore.Permissions;
 
 namespace BookStore.Web
 {
@@ -116,6 +118,13 @@ namespace BookStore.Web
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                     options.Audience = "BookStore";
                 });
+
+            Configure<RazorPagesOptions>(options =>
+            {
+                options.Conventions.AuthorizePage("/Books/Index", BookStorePermissions.Books.Default);
+                options.Conventions.AuthorizePage("/Books/CreateModal", BookStorePermissions.Books.Create);
+                options.Conventions.AuthorizePage("/Books/EditModal", BookStorePermissions.Books.Edit);
+            });
         }
 
         private void ConfigureAutoMapper()

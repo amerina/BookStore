@@ -5,6 +5,7 @@ using BookStore.Localization;
 using BookStore.MultiTenancy;
 using Volo.Abp.TenantManagement.Web.Navigation;
 using Volo.Abp.UI.Navigation;
+using BookStore.Permissions;
 
 namespace BookStore.Web.Menus
 {
@@ -30,19 +31,23 @@ namespace BookStore.Web.Menus
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(BookStoreMenus.Home, l["Menu:Home"], "~/"));
 
-            context.Menu.AddItem(
-                    new ApplicationMenuItem(
-                        "BooksStore",
-                        l["Menu:BookStore"],
-                        icon: "fa fa-book"
-                    ).AddItem(
-                        new ApplicationMenuItem(
-                            "BooksStore.Books",
-                            l["Menu:Books"],
-                            url: "/Books"
-                        )
-                    )
+            var bookStoreMenu = new ApplicationMenuItem(
+                 "BooksStore",
+                 l["Menu:BookStore"],
+                 icon: "fa fa-book"
                 );
+
+            context.Menu.AddItem(bookStoreMenu);
+
+            //CHECK the PERMISSION
+            if (await context.IsGrantedAsync(BookStorePermissions.Books.Default))
+            {
+                bookStoreMenu.AddItem(new ApplicationMenuItem(
+                    "BooksStore.Books",
+                    l["Menu:Books"],
+                    url: "/Books"
+                ));
+            }
         }
     }
 }

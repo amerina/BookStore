@@ -26,3 +26,11 @@ AutoMapper库可以在定义了正确的映射时自动执行此转换.
 
 
 #https://docs.abp.io/zh-Hans/abp/latest/API/Auto-API-Controllers
+
+
+#Authorization授权
+#https://docs.abp.io/en/abp/latest/Tutorials/Part-5?UI=MVC&DB=EF
+#https://docs.abp.io/en/abp/latest/Authorization
+#https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-5.0
+
+
