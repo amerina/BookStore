@@ -8,6 +8,9 @@ namespace BookStore
 {
     public class BookDto : AuditedEntityDto<Guid>
     {
+        public Guid AuthorId { get; set; }
+        public string AuthorName { get; set; }
+
         public string Name { get; set; }
 
         public BookType Type { get; set; }

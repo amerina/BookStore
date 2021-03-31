@@ -13,6 +13,10 @@ namespace BookStore.Web
             //请注意,我们在Web层中进行映射定义是一种最佳实践,因为仅在该层中需要它.
             CreateMap<BookDto, CreateUpdateBookDto>();
 
+            CreateMap<Pages.Books.CreateModalModel.CreateBookViewModel, CreateUpdateBookDto>();
+            CreateMap<BookDto, Pages.Books.EditModalModel.EditBookViewModel>();
+            CreateMap<Pages.Books.EditModalModel.EditBookViewModel, CreateUpdateBookDto>();
+
             // ADD a NEW MAPPING
             CreateMap<Pages.Authors.CreateModalModel.CreateAuthorViewModel, CreateAuthorDto>();
 
