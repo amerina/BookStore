@@ -184,7 +184,35 @@ namespace BookStore.Web
                 options.MenuContributors.Add(new BookStoreMenuContributor());
             });
         }
+        /*
+         https://docs.abp.io/zh-Hans/abp/latest/API/Auto-API-Controllers
+         HTTP Method
+         ABP在确定服务方法的HTTP Method时使用命名约定:
+            Get: 如果方法名称以GetList,GetAll或Get开头.
+            Put: 如果方法名称以Put或Update开头.
+            Delete: 如果方法名称以Delete或Remove开头.
+            Post: 如果方法名称以Create,Add,Insert或Post开头.
+            Patch: 如果方法名称以Patch开头.
+            其他情况, Post 为 默认方式.
 
+        路由
+        路由根据一些惯例生成:
+            它始终以 /api开头.
+            接着是路由路径. 默认值为"/app"
+         
+        服务选择
+            创建的HTTP API控制器并不是应用服务所独有的功能.
+
+        IRemoteService 接口
+            如果一个类实现了IRemoteService接口, 那么它会被自动选择为API控制器. 由于应用程序服务本身实现了IRemoteService接口, 因此它自然就成为API控制器.
+
+        RemoteService Attribute
+            RemoteService可用于将实现IRemoteService接口的类标记为远程服务或禁用它. 
+
+         */
+        /// <summary>
+        /// 自动将应用程序服务配置为API控制器
+        /// </summary>
         private void ConfigureAutoApiControllers()
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>
