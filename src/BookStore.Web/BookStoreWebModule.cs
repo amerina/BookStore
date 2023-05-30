@@ -41,6 +41,10 @@ using BookStore.Permissions;
 
 namespace BookStore.Web
 {
+    /// <summary>
+    /// 添加依赖
+    /// 这里前后顺序没有关系
+    /// </summary>
     [DependsOn(
         typeof(BookStoreHttpApiModule),
         typeof(BookStoreApplicationModule),
@@ -56,6 +60,10 @@ namespace BookStore.Web
         )]
     public class BookStoreWebModule : AbpModule
     {
+        /// <summary>
+        /// 配置服务前优先配置本地化
+        /// </summary>
+        /// <param name="context"></param>
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
@@ -109,6 +117,11 @@ namespace BookStore.Web
             });
         }
 
+        /// <summary>
+        /// 配置授权
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="configuration"></param>
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
             context.Services.AddAuthentication()
@@ -134,6 +147,9 @@ namespace BookStore.Web
             });
         }
 
+        /// <summary>
+        /// 配置自动映射
+        /// </summary>
         private void ConfigureAutoMapper()
         {
             Configure<AbpAutoMapperOptions>(options =>
@@ -142,6 +158,10 @@ namespace BookStore.Web
             });
         }
 
+        /// <summary>
+        /// 配置虚拟文件系统
+        /// </summary>
+        /// <param name="hostingEnvironment"></param>
         private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
         {
             if (hostingEnvironment.IsDevelopment())
@@ -157,6 +177,9 @@ namespace BookStore.Web
             }
         }
 
+        /// <summary>
+        /// 配置本地化
+        /// </summary>
         private void ConfigureLocalizationServices()
         {
             Configure<AbpLocalizationOptions>(options =>
@@ -233,6 +256,10 @@ namespace BookStore.Web
             );
         }
 
+        /// <summary>
+        /// Startup调用InitializeApplication时执行
+        /// </summary>
+        /// <param name="context"></param>
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
@@ -269,6 +296,7 @@ namespace BookStore.Web
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStore API");
             });
+            //配置ABP审计日志中间件
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
